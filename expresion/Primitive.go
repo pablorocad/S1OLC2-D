@@ -9,9 +9,10 @@ type Primitivo struct {
 	Tipo  interfaces.TipoExpresion
 }
 
-func (p Primitivo) Ejecutar() interfaces.Symbol {
+func (p Primitivo) Ejecutar(env interface{}) interfaces.Symbol {
 
 	return interfaces.Symbol{
+		Id:    "",
 		Tipo:  p.Tipo,
 		Valor: p.Valor,
 	}

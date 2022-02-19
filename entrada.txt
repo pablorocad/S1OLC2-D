@@ -1,5 +1,11 @@
-console.log(4 / 2 + 1 * (1 - 5));
-console.log(5);
-console.log(2*2*2*2);
-console.log(45);
-console.log(45*2 + "Hola");
+number var1 = 45;
+
+while(var1 > 40) {
+    number var1 = 6;
+    number var2 = 8*2;
+    console.log(var1);
+}
+
+
+console.log(var2);
+console.log(var1);

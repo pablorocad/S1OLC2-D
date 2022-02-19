@@ -1,14 +1,15 @@
 package interfaces
 
 type Symbol struct {
+	Id    string
 	Tipo  TipoExpresion
 	Valor interface{}
 }
 
 type Expresion interface {
-	Ejecutar() Symbol
+	Ejecutar(env interface{}) Symbol
 }
 
 type Instruction interface {
-	Ejecutar() interface{}
+	Ejecutar(env interface{}) interface{}
 }

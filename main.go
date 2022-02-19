@@ -1,6 +1,7 @@
 package main
 
 import (
+	"OLC2/environment"
 	"OLC2/interfaces"
 	"OLC2/parser"
 
@@ -18,8 +19,11 @@ func NewTreeShapeListener() *TreeShapeListener {
 func (this *TreeShapeListener) ExitStart(ctx *parser.StartContext) {
 	result := ctx.GetLista()
 
+	var globalEnv environment.Environment
+	globalEnv = environment.NewEnvironment(nil)
+
 	for _, s := range result.ToArray() {
-		s.(interfaces.Instruction).Ejecutar()
+		s.(interfaces.Instruction).Ejecutar(globalEnv)
 	}
 
 }

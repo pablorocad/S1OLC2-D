@@ -32,6 +32,9 @@ instrucciones returns [*arrayList.List l]
 
 instruccion returns [interfaces.Instruction instr]
   : CONSOLE '.' LOG PARIZQ expression PARDER ';' {$instr = instruction.NewImprimir($expression.p)}
+  | P_NUMBER id=ID '=' expression ';'{$instr = instruction.NewDeclaration($id.text,interfaces.INTEGER,$expression.p)}
+  | P_IF PARIZQ expression PARDER LLAVEIZQ instrucciones LLAVEDER  {$instr = instruction.NewIf($expression.p, $instrucciones.l)}
+  | P_WHILE PARIZQ expression PARDER LLAVEIZQ instrucciones LLAVEDER  {$instr = instruction.NewWhile($expression.p, $instrucciones.l)}
 ;
 
 expression returns[interfaces.Expresion p]
@@ -41,6 +44,7 @@ expression returns[interfaces.Expresion p]
 expr_arit returns[interfaces.Expresion p]
     : opIz = expr_arit op=('*'|'/') opDe = expr_arit {$p = expresion.NewOperacion($opIz.p,$op.text,$opDe.p,false)}
     | opIz = expr_arit op=('+'|'-') opDe = expr_arit {$p = expresion.NewOperacion($opIz.p,$op.text,$opDe.p,false)}     
+    | opIz = expr_arit op=('<'|'<='|'>='|'>') opDe = expr_arit {$p = expresion.NewOperacion($opIz.p,$op.text,$opDe.p,false)}     
     | primitivo {$p = $primitivo.p} 
     | PARIZQ expression PARDER {$p = $expression.p}
 ;
@@ -56,4 +60,6 @@ primitivo returns[interfaces.Expresion p]
     | STRING { 
       str:= $STRING.text[1:len($STRING.text)-1]
       $p = expresion.NewPrimitivo(str,interfaces.STRING)}
+    | ID { 
+      $p = expresion.NewCallVariable($ID.text)}
 ;
