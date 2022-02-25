@@ -25,17 +25,18 @@ func (env Environment) SaveVariable(id string, value interfaces.Symbol, tipo int
 
 func (env Environment) GetVariable(id string) interfaces.Symbol {
 
-	tmpEnv := env
+	var tmpEnv Environment
+	tmpEnv = env
 
 	for {
-		if variable, ok := env.variable[id]; ok {
+		if variable, ok := tmpEnv.variable[id]; ok {
 			return variable
 		}
 
 		if tmpEnv.father == nil {
 			break
 		} else {
-			tmpEnv = *tmpEnv.father.(*Environment)
+			tmpEnv = tmpEnv.father.(Environment)
 		}
 	}
 
@@ -45,17 +46,19 @@ func (env Environment) GetVariable(id string) interfaces.Symbol {
 
 func (env Environment) AlterVariable(id string, value interfaces.Symbol) interfaces.Symbol {
 
-	tmpEnv := env
+	var tmpEnv Environment
+	tmpEnv = env
 
 	for {
-		if variable, ok := env.variable[id]; ok {
+		if variable, ok := tmpEnv.variable[id]; ok {
+			tmpEnv.variable[id] = interfaces.Symbol{Id: id, Tipo: variable.Tipo, Valor: value}
 			return variable
 		}
 
 		if tmpEnv.father == nil {
 			break
 		} else {
-			tmpEnv = *tmpEnv.father.(*Environment)
+			tmpEnv = tmpEnv.father.(Environment)
 		}
 	}
 

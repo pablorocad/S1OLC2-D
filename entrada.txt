@@ -1,9 +1,11 @@
 number var1 = 45;
 
-while(var1 > 40) {
-    number var1 = 6;
+while(var1 > 30) {
     number var2 = 8*2;
-    console.log(var1);
+    if(var1 <= 34) {
+        console.log(var1);
+    }
+    var1 = var1 - 1;
 }
 
 
