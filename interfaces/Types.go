@@ -7,5 +7,6 @@ const (
 	FLOAT
 	STRING
 	BOOLEAN
+	ARRAY
 	NULL
 )

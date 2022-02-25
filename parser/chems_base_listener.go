@@ -39,6 +39,12 @@ func (s *BaseChemsListener) EnterInstruccion(ctx *InstruccionContext) {}
 // ExitInstruccion is called when production instruccion is exited.
 func (s *BaseChemsListener) ExitInstruccion(ctx *InstruccionContext) {}
 
+// EnterArray_st is called when production array_st is entered.
+func (s *BaseChemsListener) EnterArray_st(ctx *Array_stContext) {}
+
+// ExitArray_st is called when production array_st is exited.
+func (s *BaseChemsListener) ExitArray_st(ctx *Array_stContext) {}
+
 // EnterExpression is called when production expression is entered.
 func (s *BaseChemsListener) EnterExpression(ctx *ExpressionContext) {}
 
@@ -51,8 +57,20 @@ func (s *BaseChemsListener) EnterExpr_arit(ctx *Expr_aritContext) {}
 // ExitExpr_arit is called when production expr_arit is exited.
 func (s *BaseChemsListener) ExitExpr_arit(ctx *Expr_aritContext) {}
 
+// EnterListValues is called when production listValues is entered.
+func (s *BaseChemsListener) EnterListValues(ctx *ListValuesContext) {}
+
+// ExitListValues is called when production listValues is exited.
+func (s *BaseChemsListener) ExitListValues(ctx *ListValuesContext) {}
+
 // EnterPrimitivo is called when production primitivo is entered.
 func (s *BaseChemsListener) EnterPrimitivo(ctx *PrimitivoContext) {}
 
 // ExitPrimitivo is called when production primitivo is exited.
 func (s *BaseChemsListener) ExitPrimitivo(ctx *PrimitivoContext) {}
+
+// EnterListArray is called when production listArray is entered.
+func (s *BaseChemsListener) EnterListArray(ctx *ListArrayContext) {}
+
+// ExitListArray is called when production listArray is exited.
+func (s *BaseChemsListener) ExitListArray(ctx *ListArrayContext) {}

@@ -16,6 +16,7 @@ ID: ([a-zA-Z_])[a-zA-Z0-9_]*;
 
 PUNTO:          '.';
 PTCOMA:         ';';
+COMA:           ',';
 DIFERENTE:      '!';
 IGUAL:          '=';
 MAYORIGUAL:     '>=';
@@ -30,6 +31,8 @@ PARIZQ:         '(';
 PARDER:         ')';
 LLAVEIZQ:       '{';
 LLAVEDER:       '}';
+CORIZQ:         '[';
+CORDER:         ']';
 
 
 WHITESPACE: [ \\\r\n\t]+ -> skip;
