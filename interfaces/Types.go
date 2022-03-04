@@ -8,5 +8,6 @@ const (
 	STRING
 	BOOLEAN
 	ARRAY
+	STRUCT
 	NULL
 )

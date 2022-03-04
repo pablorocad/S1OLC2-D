@@ -17,8 +17,14 @@ type ChemsListener interface {
 	// EnterInstruccion is called when entering the instruccion production.
 	EnterInstruccion(c *InstruccionContext)
 
+	// EnterLista_att is called when entering the lista_att production.
+	EnterLista_att(c *Lista_attContext)
+
 	// EnterArray_st is called when entering the array_st production.
 	EnterArray_st(c *Array_stContext)
+
+	// EnterStruct_st is called when entering the struct_st production.
+	EnterStruct_st(c *Struct_stContext)
 
 	// EnterExpression is called when entering the expression production.
 	EnterExpression(c *ExpressionContext)
@@ -44,8 +50,14 @@ type ChemsListener interface {
 	// ExitInstruccion is called when exiting the instruccion production.
 	ExitInstruccion(c *InstruccionContext)
 
+	// ExitLista_att is called when exiting the lista_att production.
+	ExitLista_att(c *Lista_attContext)
+
 	// ExitArray_st is called when exiting the array_st production.
 	ExitArray_st(c *Array_stContext)
+
+	// ExitStruct_st is called when exiting the struct_st production.
+	ExitStruct_st(c *Struct_stContext)
 
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)

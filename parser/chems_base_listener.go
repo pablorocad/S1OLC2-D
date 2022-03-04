@@ -39,11 +39,23 @@ func (s *BaseChemsListener) EnterInstruccion(ctx *InstruccionContext) {}
 // ExitInstruccion is called when production instruccion is exited.
 func (s *BaseChemsListener) ExitInstruccion(ctx *InstruccionContext) {}
 
+// EnterLista_att is called when production lista_att is entered.
+func (s *BaseChemsListener) EnterLista_att(ctx *Lista_attContext) {}
+
+// ExitLista_att is called when production lista_att is exited.
+func (s *BaseChemsListener) ExitLista_att(ctx *Lista_attContext) {}
+
 // EnterArray_st is called when production array_st is entered.
 func (s *BaseChemsListener) EnterArray_st(ctx *Array_stContext) {}
 
 // ExitArray_st is called when production array_st is exited.
 func (s *BaseChemsListener) ExitArray_st(ctx *Array_stContext) {}
+
+// EnterStruct_st is called when production struct_st is entered.
+func (s *BaseChemsListener) EnterStruct_st(ctx *Struct_stContext) {}
+
+// ExitStruct_st is called when production struct_st is exited.
+func (s *BaseChemsListener) ExitStruct_st(ctx *Struct_stContext) {}
 
 // EnterExpression is called when production expression is entered.
 func (s *BaseChemsListener) EnterExpression(ctx *ExpressionContext) {}

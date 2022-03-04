@@ -1,11 +1,8 @@
-number[] var1 = [ 
-        [ 
-            [ 1,2,3,4 ],
-            [ 67 ]
-        ], 
-        [ 
-            [ 5,8,2 ] 
-        ] 
-    ];
+struct prueba {
+    x: number,
+    att1: number
+}
 
-console.log(var1[0][1][10]);
+number {} var1 = {1,8}prueba;
+
+console.log(var1);

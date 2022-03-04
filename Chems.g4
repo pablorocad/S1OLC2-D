@@ -32,14 +32,31 @@ instrucciones returns [*arrayList.List l]
 
 instruccion returns [interfaces.Instruction instr]
   : CONSOLE '.' LOG PARIZQ expression PARDER ';' {$instr = instruction.NewImprimir($expression.p)}
-  | P_NUMBER isArray=array_st id=ID '=' expression ';'{$instr = instruction.NewDeclaration($id.text,interfaces.INTEGER,$expression.p, $isArray.arr)}
+  | P_NUMBER isStruct=struct_st isArray=array_st id=ID '=' expression ';'{$instr = instruction.NewDeclaration($id.text,interfaces.INTEGER,$expression.p, $isArray.arr, $isStruct.stru)}
   | id=ID '=' expression ';'{$instr = instruction.NewAssignment($id.text,$expression.p)}
   | P_IF PARIZQ expression PARDER LLAVEIZQ instrucciones LLAVEDER  {$instr = instruction.NewIf($expression.p, $instrucciones.l)}
   | P_WHILE PARIZQ expression PARDER LLAVEIZQ instrucciones LLAVEDER  {$instr = instruction.NewWhile($expression.p, $instrucciones.l)}
+  | P_STRUCT id=ID LLAVEIZQ lista=lista_att LLAVEDER  {$instr = instruction.NewStruct($id.text, $lista.l)}
 ;
+
+lista_att returns [*arrayList.List l]
+    : list=lista_att ',' id=ID ':' P_NUMBER { 
+                                        $list.l.Add($id.text);
+                                        $l = $list.l;
+                                    }
+    | id=ID ':' P_NUMBER  { 
+                    $l = arrayList.New();
+                    $l.Add($id.text);
+                }
+    ;
 
 array_st returns [bool arr]
    : CORIZQ CORDER { $arr = true }
+   |
+;
+
+struct_st returns [bool stru]
+   : LLAVEIZQ LLAVEDER { $stru = true }
    |
 ;
 
@@ -52,6 +69,7 @@ expr_arit returns[interfaces.Expresion p]
     | opIz = expr_arit op=('+'|'-') opDe = expr_arit {$p = expresion.NewOperacion($opIz.p,$op.text,$opDe.p,false)}     
     | opIz = expr_arit op=('<'|'<='|'>='|'>') opDe = expr_arit {$p = expresion.NewOperacion($opIz.p,$op.text,$opDe.p,false)}     
     | CORIZQ listValues CORDER { $p = expresion.NewArray($listValues.l) }
+    | LLAVEIZQ listValues LLAVEDER id=ID { $p = expresion.NewStruct($id.text, $listValues.l) }
     | primitivo {$p = $primitivo.p} 
     | PARIZQ expression PARDER {$p = $expression.p}
 ;
