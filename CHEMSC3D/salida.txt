@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <math.h>
+double HEAP[82000];
+double STACK[82000];
+double P;
+double H;
+double t0, t1, t2, t3, t4;
+
+
+void main(){
+t0 = 3 * 4;
+t1 = 9 + t0;
+t2 = 4 / 2;
+t3 = t2 - 2;
+t4 = t1 - t3;
+printf("%d",(int)t4);
+
+return;
+}
