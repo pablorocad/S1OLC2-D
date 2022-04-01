@@ -42,6 +42,14 @@ func (p Aritmetica) Ejecutar(env interface{}, gen *generator.Generator) interfac
 		{interfaces.NULL, interfaces.NULL, interfaces.NULL, interfaces.NULL, interfaces.NULL},
 	}
 
+	relacional_dominante := [5][5]interfaces.TipoExpresion{
+		{interfaces.INTEGER, interfaces.FLOAT, interfaces.NULL, interfaces.NULL, interfaces.NULL},
+		{interfaces.FLOAT, interfaces.FLOAT, interfaces.NULL, interfaces.NULL, interfaces.NULL},
+		{interfaces.NULL, interfaces.NULL, interfaces.NULL, interfaces.NULL, interfaces.NULL},
+		{interfaces.NULL, interfaces.NULL, interfaces.NULL, interfaces.NULL, interfaces.NULL},
+		{interfaces.NULL, interfaces.NULL, interfaces.NULL, interfaces.NULL, interfaces.NULL},
+	}
+
 	var retornoIzq interfaces.Value
 	var retornoDer interfaces.Value
 
@@ -125,6 +133,121 @@ func (p Aritmetica) Ejecutar(env interface{}, gen *generator.Generator) interfac
 			} else if dominante == interfaces.FLOAT {
 				gen.AddExpression(newTemp, retornoIzq.Value, retornoDer.Value, "/")
 				return interfaces.Value{Value: newTemp, IsTemp: true, Type: dominante, TrueLabel: "", FalseLabel: ""}
+
+			} else {
+				fmt.Print("ERROR: No es posible Dividir")
+			}
+
+		}
+
+	case "<":
+		{
+			dominante = relacional_dominante[retornoIzq.Type][retornoDer.Type]
+
+			if dominante == interfaces.INTEGER {
+
+				trueLabel := gen.NewLabel()
+				falseLabel := gen.NewLabel()
+
+				gen.AddIf(retornoIzq.Value, retornoDer.Value, "<", trueLabel)
+				gen.AddGoto(falseLabel)
+
+				return interfaces.Value{Value: "", IsTemp: false, Type: interfaces.BOOLEAN, TrueLabel: trueLabel, FalseLabel: falseLabel}
+
+			} else if dominante == interfaces.FLOAT {
+				trueLabel := gen.NewLabel()
+				falseLabel := gen.NewLabel()
+
+				gen.AddIf(retornoIzq.Value, retornoDer.Value, "<", trueLabel)
+				gen.AddGoto(falseLabel)
+
+				return interfaces.Value{Value: "", IsTemp: false, Type: interfaces.BOOLEAN, TrueLabel: trueLabel, FalseLabel: falseLabel}
+
+			} else {
+				fmt.Print("ERROR: No es posible Dividir")
+			}
+
+		}
+
+	case ">":
+		{
+			dominante = relacional_dominante[retornoIzq.Type][retornoDer.Type]
+
+			if dominante == interfaces.INTEGER {
+
+				trueLabel := gen.NewLabel()
+				falseLabel := gen.NewLabel()
+
+				gen.AddIf(retornoIzq.Value, retornoDer.Value, ">", trueLabel)
+				gen.AddGoto(falseLabel)
+
+				return interfaces.Value{Value: "", IsTemp: false, Type: interfaces.BOOLEAN, TrueLabel: trueLabel, FalseLabel: falseLabel}
+
+			} else if dominante == interfaces.FLOAT {
+				trueLabel := gen.NewLabel()
+				falseLabel := gen.NewLabel()
+
+				gen.AddIf(retornoIzq.Value, retornoDer.Value, ">", trueLabel)
+				gen.AddGoto(falseLabel)
+
+				return interfaces.Value{Value: "", IsTemp: false, Type: interfaces.BOOLEAN, TrueLabel: trueLabel, FalseLabel: falseLabel}
+
+			} else {
+				fmt.Print("ERROR: No es posible Dividir")
+			}
+
+		}
+	case ">=":
+		{
+			dominante = relacional_dominante[retornoIzq.Type][retornoDer.Type]
+
+			if dominante == interfaces.INTEGER {
+
+				trueLabel := gen.NewLabel()
+				falseLabel := gen.NewLabel()
+
+				gen.AddIf(retornoIzq.Value, retornoDer.Value, ">=", trueLabel)
+				gen.AddGoto(falseLabel)
+
+				return interfaces.Value{Value: "", IsTemp: false, Type: interfaces.BOOLEAN, TrueLabel: trueLabel, FalseLabel: falseLabel}
+
+			} else if dominante == interfaces.FLOAT {
+				trueLabel := gen.NewLabel()
+				falseLabel := gen.NewLabel()
+
+				gen.AddIf(retornoIzq.Value, retornoDer.Value, ">=", trueLabel)
+				gen.AddGoto(falseLabel)
+
+				return interfaces.Value{Value: "", IsTemp: false, Type: interfaces.BOOLEAN, TrueLabel: trueLabel, FalseLabel: falseLabel}
+
+			} else {
+				fmt.Print("ERROR: No es posible Dividir")
+			}
+
+		}
+
+	case "<=":
+		{
+			dominante = relacional_dominante[retornoIzq.Type][retornoDer.Type]
+
+			if dominante == interfaces.INTEGER {
+
+				trueLabel := gen.NewLabel()
+				falseLabel := gen.NewLabel()
+
+				gen.AddIf(retornoIzq.Value, retornoDer.Value, "<=", trueLabel)
+				gen.AddGoto(falseLabel)
+
+				return interfaces.Value{Value: "", IsTemp: false, Type: interfaces.BOOLEAN, TrueLabel: trueLabel, FalseLabel: falseLabel}
+
+			} else if dominante == interfaces.FLOAT {
+				trueLabel := gen.NewLabel()
+				falseLabel := gen.NewLabel()
+
+				gen.AddIf(retornoIzq.Value, retornoDer.Value, "<=", trueLabel)
+				gen.AddGoto(falseLabel)
+
+				return interfaces.Value{Value: "", IsTemp: false, Type: interfaces.BOOLEAN, TrueLabel: trueLabel, FalseLabel: falseLabel}
 
 			} else {
 				fmt.Print("ERROR: No es posible Dividir")

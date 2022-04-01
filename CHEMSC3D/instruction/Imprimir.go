@@ -21,7 +21,18 @@ func (p Imprimir) Ejecutar(env interface{}, gen *generator.Generator) interface{
 
 	result = p.Expresion.Ejecutar(env, gen)
 
-	gen.AddPrintf("d", "(int)"+fmt.Sprintf("%v", result.Value))
+	if result.Type == interfaces.BOOLEAN {
+		newLabel := gen.NewLabel()
+		gen.AddLabel(result.TrueLabel)
+		gen.AddPrintf("d", "(int)"+fmt.Sprintf("%v", 1))
+		gen.AddGoto(newLabel)
+		gen.AddLabel(result.FalseLabel)
+		gen.AddPrintf("d", "(int)"+fmt.Sprintf("%v", 0))
+		gen.AddLabel(newLabel)
+
+	} else {
+		gen.AddPrintf("d", "(int)"+fmt.Sprintf("%v", result.Value))
+	}
 
 	return result.Value
 }

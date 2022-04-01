@@ -50,6 +50,14 @@ func (g *Generator) AddLabel(label string) {
 	g.code.Add(label + ":")
 }
 
+func (g *Generator) AddIf(left string, right string, operator string, label string) {
+	g.code.Add("if(" + left + " " + operator + " " + right + ") goto " + label + ";")
+}
+
+func (g *Generator) AddGoto(label string) {
+	g.code.Add("goto " + label + ";")
+}
+
 func (g *Generator) AddExpression(target string, left string, right string, operator string) {
 	g.code.Add(target + " = " + left + " " + operator + " " + right + ";")
 }
