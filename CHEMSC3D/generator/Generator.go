@@ -66,3 +66,13 @@ func (g *Generator) AddExpression(target string, left string, right string, oper
 func (g *Generator) AddPrintf(typePrint string, value string) {
 	g.code.Add("printf(\"%" + typePrint + "\"," + value + ");")
 }
+
+//Añade un printf
+func (g *Generator) AddSetStack(index string, value string) {
+	g.code.Add("STACK[" + index + "] = " + value + ";")
+}
+
+//Añade un printf
+func (g *Generator) AddGetStack(target string, index string) {
+	g.code.Add(target + " = STACK[" + index + "];")
+}

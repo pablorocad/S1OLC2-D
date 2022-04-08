@@ -1,1 +1,4 @@
-console.log((3 + 4 * 1 / 98) >= (82 * 3 - 34));
+number variable = 3 + 5;
+number variable2 = 8*variable;
+
+console.log(variable2 + 67 + variable);

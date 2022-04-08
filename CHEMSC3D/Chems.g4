@@ -32,6 +32,7 @@ instrucciones returns [*arrayList.List l]
 
 instruccion returns [interfaces.Instruction instr]
   : CONSOLE '.' LOG PARIZQ expression PARDER ';' {$instr = instruction.NewImprimir($expression.p)}
+  | P_NUMBER id=ID '=' expression ';'{$instr = instruction.NewDeclaration($id.text,interfaces.INTEGER,$expression.p)}
 ;
 
 expression returns[interfaces.Expresion p]
@@ -54,6 +55,7 @@ primitivo returns[interfaces.Expresion p]
                 }
             $p = expresion.NewPrimitivo (num,interfaces.INTEGER)
        } 
+    | ID { $p = expresion.NewCallVariable($ID.text)}
     | STRING { 
       str:= $STRING.text[1:len($STRING.text)-1]
       $p = expresion.NewPrimitivo(str,interfaces.STRING)}

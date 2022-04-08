@@ -4,27 +4,20 @@ double HEAP[82000];
 double STACK[82000];
 double P;
 double H;
-double t0, t1, t2, t3, t4, t5;
+double t0, t1, t2, t3, t4, t5, t6;
 
 
 void main(){
-STACK[5] = 67;
-t0 = 4 * 1;
-t1 = t0 / 98;
-t2 = 3 + t1;
-t3 = STACK[5]
-t4 = t2 / t3
-
-t5 = 82 * 3;
-t6 = t5 - 34;
-if(t4 >= t6) goto L0;
-goto L1;
-L0:
-printf("%d",(int)1);
-goto L2;
-L1:
-printf("%d",(int)0);
-L2:
+t0 = 3 + 5;
+STACK[0] = t0;
+t1 = STACK[0];
+t2 = 8 * t1;
+STACK[1] = t2;
+t3 = STACK[1];
+t4 = t3 + 67;
+t5 = STACK[0];
+t6 = t4 + t5;
+printf("%d",(int)t6);
 
 return;
 }
